@@ -99,9 +99,9 @@ export const quizArray: QuizProps[] = [
     },
     {
         id: 17,
-        question: "Which ocean is the largest in terms of area?",
-        answersArray: ["Atlantic Ocean", "Indian Ocean", "Southern Ocean", "Pacific Ocean"],
-        correctAnswer: "Pacific Ocean",
+        question: "Which ocean is the smallest in terms of area?",
+        answersArray: ["Atlantic Ocean", "Indian Ocean", "Southern Ocean", "The Arctic Ocean"],
+        correctAnswer: "The Arctic Ocean",
     },
     {
         id: 18,

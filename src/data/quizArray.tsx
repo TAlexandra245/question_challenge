@@ -34,19 +34,19 @@ export const quizArray: QuizProps[] = [
     {
         id: 6,
         question: "Who developed the theory of general relativity?",
-        answersArray: ["Isaac Newton", "Albert Einstein ", "Galileo Galilei", "Stephen Hawking"],
+        answersArray: ["Isaac Newton", "Albert Einstein", "Galileo Galilei", "Stephen Hawking"],
         correctAnswer: "Albert Einstein"
     },
     {
         id: 7,
         question: "What is the powerhouse of the cell?",
-        answersArray: ["Nucleus", "Ribosome", "Mitochondria ", "Endoplasmic reticulum"],
+        answersArray: ["Nucleus", "Ribosome", "Mitochondria", "Endoplasmic reticulum"],
         correctAnswer: "Mitochondria"
     },
     {
         id: 8,
         question: "What is the process by which plants make their own food using sunlight?",
-        answersArray: ["Respiration", "Photosynthesis ", "Transpiration", "Fermentation"],
+        answersArray: ["Respiration", "Photosynthesis", "Transpiration", "Fermentation"],
         correctAnswer: "Photosynthesis"
     },
     {

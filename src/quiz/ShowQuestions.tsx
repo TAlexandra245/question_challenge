@@ -4,75 +4,80 @@ import './ShowQuestions.css'
 import Quiz from "../data/QuizProps";
 
 
-
 export function ShowQuestions() {
-    const [displayedQuestions, setDisplayedQuestions] = useState<Quiz[]>([]);
+    const [displayedQuestions, setDisplayedQuestions] = useState<number[]>([]);
     const [score, setScore] = useState(0);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [error, setError] = useState<string | null>(null);
     const [showScore, setShowScore] = useState<boolean>(false);
+    const [randomQuestion, setRandomQuestion] = useState<Quiz | null>(null);
     const [currentUserAnswer, setCurrentUserAnswer] = useState<string | null>(null);
+    const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
 
-    const incrementIndex = () => currentQuestionIndex < quizArray.length  ? setCurrentQuestionIndex(currentQuestionIndex + 1) : null
-    const currentQuestion = quizArray[currentQuestionIndex];
 
-    const getRandomQuestion = (): Quiz => {
-        const randomIndex = Math.floor(Math.random() * quizArray.length - 1);
-        const randomQuestion = quizArray[randomIndex];
-        if (displayedQuestions.includes(randomQuestion)) {
-            console.log("This question is repeating", randomQuestion);
+    const handleRandomQuestion = (): Quiz | void => {
+        let randomIndex = Math.floor(Math.random() * quizArray.length);
+        while (displayedQuestions.includes(randomIndex)) {
+            randomIndex = Math.floor(Math.random() * quizArray.length);
+            console.log("Generated random index", randomIndex);
         }
-        setDisplayedQuestions([...displayedQuestions, randomQuestion]);
-        console.log(randomQuestion);
-        return randomQuestion;
+        setDisplayedQuestions(previousValue => [...previousValue, randomIndex]);
 
+        const selectedQuestion = quizArray[randomIndex];
+
+        console.log("Selected Question", displayedQuestions);
+        setRandomQuestion(selectedQuestion);
+        setButtonDisabled(true);
     }
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
-        getRandomQuestion();
 
         if (!currentUserAnswer) {
             setError('Please pick a choice');
             return;
         }
 
-        if (currentUserAnswer === currentQuestion.correctAnswer) {
+        handleRandomQuestion();
+
+        if (currentUserAnswer === randomQuestion?.correctAnswer) {
             setScore(prevScore => prevScore + 1);
         }
 
         setError('');
         setCurrentUserAnswer(null);
-        incrementIndex();
-
+        setPage(prevState => prevState + 1)
     }
 
-
     const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => setCurrentUserAnswer(event.target.value);
-
+    const displayQuestionsLength = displayedQuestions.length;
 
     return (
         <div>
-            <div className = "quiz_container">
-                <h2>{currentQuestion.question}</h2>
+            <div className="quiz_container">
                 <form onSubmit={handleSubmit}>
-                    {currentQuestion.answersArray.map((answer, answerIndex) => (
-                        <div key={answerIndex} className = "container_answer">
-                            <input type="radio" id={`answer_${answerIndex}`} name="answers" value={answer}
-                                   checked={currentUserAnswer === answer}
-                                   onChange={handleRadioChange}
-                            />
-                            <label htmlFor={`answer_${answerIndex}`}> {answer}</label>
-                        </div>
-                    ))}
+                    <div>
+                        <h3>{randomQuestion?.question}</h3>
+
+                        {randomQuestion?.answersArray.map((answer, index) => (
+                            <div key={index} className="container_answer">
+                                <input type="radio" id={`answer_${index}`} name="answers" value={answer}
+                                       checked={currentUserAnswer === answer}
+                                       onChange={handleRadioChange}/>
+                                <label htmlFor={`answer_${index}`}> {answer}</label>
+                            </div>
+                        ))}
+                    </div>
                     {error && <p style={{color: 'red'}}>{error}</p>}
-                    {showScore && (<p> Your score : {score} </p>)}
-                    <button type="submit">Submit your answers</button>
-                    <button onClick={() => setShowScore(true)}> Finish Quiz</button>
-                    <button onClick={() => window.location.reload()}> Reset quiz</button>
+                    {showScore && <p> Your score : {score} </p>}
+                    <button  type ="button" onClick={handleRandomQuestion} disabled={buttonDisabled} className="start_button">Start
+                        Quiz
+                    </button>
+                    <button type ="submit" disabled = {displayQuestionsLength < 1}>Submit your answers</button>
+                    <button type ="button" onClick={() => setShowScore(true)}> Finish Quiz</button>
+                    <button type ="button" onClick={() => window.location.reload()}> Reset quiz</button>
                 </form>
             </div>
-            <p> Question : question {currentQuestionIndex + 1} / question {quizArray.length}</p>
+            <p> Question : question {page} / question {quizArray.length}</p>
         </div>
     )
 

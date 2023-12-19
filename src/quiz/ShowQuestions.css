@@ -25,3 +25,9 @@ button {
     transition: background-color 0.3s;
     margin-right: 10px
 }
+
+button:disabled{
+    cursor: not-allowed;
+    background: dimgrey;
+    color: white;
+}

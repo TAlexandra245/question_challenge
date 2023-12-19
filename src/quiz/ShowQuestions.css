@@ -15,6 +15,7 @@ h2, form {
     margin: 0 auto;
 }
 button {
+
     padding: 10px 20px;
     background-color: #42b6ca;
     color: #fff;
@@ -23,7 +24,8 @@ button {
     font-size: 16px;
     border-radius: 4px;
     transition: background-color 0.3s;
-    margin-right: 10px
+    margin-right: 45px;
+    text-align: center;
 }
 
 button:disabled{

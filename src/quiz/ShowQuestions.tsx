@@ -17,18 +17,23 @@ export function ShowQuestions() {
 
     const handleRandomQuestion = (): Quiz | void => {
         let randomIndex = Math.floor(Math.random() * quizArray.length);
-        while (displayedQuestions.includes(randomIndex)) {
-            randomIndex = Math.floor(Math.random() * quizArray.length);
-            console.log("Generated random index", randomIndex);
-        }
-        setDisplayedQuestions(previousValue => [...previousValue, randomIndex]);
 
+        while (displayedQuestions.includes(randomIndex)) {
+            if (displayedQuestions.length === quizArray.length) {
+                setShowScore(true);
+                return;
+            }
+
+            randomIndex = Math.floor(Math.random() * quizArray.length);
+        }
+
+        setDisplayedQuestions(previousValue => [...previousValue, randomIndex]);
         const selectedQuestion = quizArray[randomIndex];
 
-        console.log("Selected Question", displayedQuestions);
         setRandomQuestion(selectedQuestion);
         setButtonDisabled(true);
     }
+
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -45,7 +50,10 @@ export function ShowQuestions() {
 
         setError('');
         setCurrentUserAnswer(null);
-        setPage(prevState => prevState + 1)
+
+        if(page < quizArray.length) {
+            setPage(prevPage => prevPage + 1);
+        }
     }
 
     const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => setCurrentUserAnswer(event.target.value);

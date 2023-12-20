@@ -1,5 +1,15 @@
 # question_challenge
- 
+
+<p>A simple quiz application implemented in React, featuring random question generation, a user-friendly interface, and a scoring system.</p>
+
+<div>
+Press Start Quiz to make the questions available. 
+
+You can click Finish Quiz if you would like to finish the quiz faster. You can not select any question once you click Finish Quiz.
+
+You can press Reset Quiz to reload the questions
+</div>
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -12,8 +12,12 @@ export function ShowQuestions() {
     const [currentUserAnswer, setCurrentUserAnswer] = useState<string | null>(null);
     const [buttonDisabled, setButtonDisabled] = useState<boolean>(false);
     const [page, setPage] = useState<number>(1);
+    const [isQuizFinished, setIsQuizFinished] = useState(false);
 
     const displayQuestionsLength = displayedQuestions.length;
+
+
+
     const handleRandomQuestion = (): Quiz | void => {
         let randomIndex = Math.floor(Math.random() * quizArray.length);
 
@@ -70,6 +74,7 @@ export function ShowQuestions() {
                             <div key={index} className="container_answer">
                                 <input type="radio" id={`answer_${index}`} name="answers" value={answer}
                                        checked={currentUserAnswer === answer}
+                                       disabled={isQuizFinished}
                                        onChange={handleRadioChange}/>
                                 <label htmlFor={`answer_${index}`}> {answer}</label>
                             </div>
@@ -82,7 +87,7 @@ export function ShowQuestions() {
                         Quiz
                     </button>
                     <button type="submit" disabled={displayQuestionsLength < 1}>Submit your answers</button>
-                    <button type="button" onClick={() => setShowScore(true)}> Finish Quiz</button>
+                    <button type="button" onClick={() => {setShowScore(true); setIsQuizFinished(true)}} disabled={isQuizFinished}> Finish Quiz</button>
                     <button type="button" onClick={() => window.location.reload()}> Reset quiz</button>
                 </form>
             </div>

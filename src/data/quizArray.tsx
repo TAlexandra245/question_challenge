@@ -69,9 +69,9 @@ export const quizArray: QuizProps[] = [
     },
     {
         id: 12,
-        question: "What is the capital city of France?",
+        question: "What is the capital city of Germany?",
         answersArray: ["Berlin", "Madrid", "Paris", "Rome"],
-        correctAnswer: "Paris",
+        correctAnswer: "Berlin",
     },
     {
         id: 13,
@@ -93,9 +93,9 @@ export const quizArray: QuizProps[] = [
     },
     {
         id: 16,
-        question: "What is the top speed of a cheetah?",
-        answersArray: ["50 mph", "70 mph", "90 mph", "120 mph"],
-        correctAnswer: "70 mph",
+        question: "How many chamber does the heart have?",
+        answersArray: ["2", "3", "4", "6"],
+        correctAnswer: "4",
     },
     {
         id: 17,
@@ -105,15 +105,15 @@ export const quizArray: QuizProps[] = [
     },
     {
         id: 18,
-        question: "What is the only planet in our solar system known to support life?",
-        answersArray: ["Venus", "Mars", "Earth", "Jupiter"],
-        correctAnswer: "Earth",
+        question: "Who was the last Tsar of Russia? ",
+        answersArray: ["Catherine I", "Nicholas II", "Alexey I", "Peter I the Great"],
+        correctAnswer: "Nicholas II",
     },
     {
         id: 19,
-        question: "Which of the following is not a mammal?",
-        answersArray: ["Dolphin", "Bat", "Lizard", "Elephant"],
-        correctAnswer: "Lizard",
+        question: "What is the 4th letter of the Greek alphabet?",
+        answersArray: ["Alpha", "Gamma", "Delta", "Beta"],
+        correctAnswer: "Delta",
     },
     {
         id: 20,
@@ -171,9 +171,9 @@ export const quizArray: QuizProps[] = [
     },
     {
         id: 29,
-        question: "Which ocean is the smallest in terms of area?",
-        answersArray: ["Arctic Ocean", "Southern Ocean", "Indian Ocean", "Atlantic Ocean"],
-        correctAnswer: "Arctic Ocean",
+        question: "Which country invented roller coaster?",
+        answersArray: ["Germany", "France", "Norway", "Russia"],
+        correctAnswer: "Russia",
     },
     {
         id: 30,
@@ -225,9 +225,9 @@ export const quizArray: QuizProps[] = [
     },
     {
         id: 38,
-        question: "What is the scientific name for the process of plants making their own food?",
-        answersArray: ["Respiration", "Photosynthesis", "Transpiration", "Germination"],
-        correctAnswer: "Photosynthesis",
+        question: "How many bones do we have in an ear?",
+        answersArray: ["6", "3", "10", "2"],
+        correctAnswer: "3",
     },
     {
         id: 39,
